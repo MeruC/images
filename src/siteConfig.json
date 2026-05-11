@@ -1,0 +1,76 @@
+{
+  "name": "八咫烏_Merui",
+  "bio": "Reddit: Meru_9 Discord: yatagarasu_merui",
+  "profilePicture": "/profile-picture.jpg",
+  "url": "https://merui.net",
+  "blog": false,
+  "iconLinks": [
+    {
+      "id": "1728534577184",
+      "icon": "youtube",
+      "url": "https://www.youtube.com/@yatagarasu_merui?sub_confirmation=1"
+    },
+    {
+      "id": "1728534577187",
+      "icon": "twitter",
+      "url": "https://x.com/yatagarasu_meru"
+    },
+    {
+      "id": "1738260999112",
+      "icon": "bluesky",
+      "url": "https://bsky.app/profile/merui.net"
+    },
+    {
+      "id": "1738261106176",
+      "icon": "twitch",
+      "url": "https://www.twitch.tv/meruiy"
+    },
+    {
+      "id": "1757670752627",
+      "icon": "tiktok",
+      "url": "https://www.tiktok.com/@yatagarasu_merui"
+    }
+  ],
+  "customLinks": [
+    {
+      "id": "1728534585738",
+      "title": "UTTU.merui.net | Reverse: 1999 Archives (WIP)",
+      "url": "https://uttu.merui.net"
+    },
+    {
+      "id": "1728534585739",
+      "title": "Support 八咫烏Merui on Ko-fi! ❤️. ko-fi.com/meruiy",
+      "url": "https://ko-fi.com/meruiy"
+    },
+    {
+      "id": "1728534585740",
+      "title": "📺 YouTube Channel",
+      "url": "https://www.youtube.com/@yatagarasu_merui?sub_confirmation=1"
+    },
+    {
+      "id": "1728534585741",
+      "title": "🔴 Twitch Channel",
+      "url": "https://www.twitch.tv/meruiy"
+    },
+    {
+      "id": "1728534585742",
+      "title": "🎨Pixiv",
+      "url": "https://www.pixiv.net/en/users/27710481"
+    },
+    {
+      "id": "1738261246120",
+      "title": "Twitter",
+      "url": "Twitter"
+    },
+    {
+      "id": "1738261292967",
+      "title": "Bluesky",
+      "url": "https://bsky.app/profile/merui.net"
+    },
+    {
+      "id": "1757670770787",
+      "title": "TikTok",
+      "url": "https://www.tiktok.com/@yatagarasu_merui"
+    }
+  ]
+}

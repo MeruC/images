@@ -1,7 +1,6 @@
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs/promises';
-import { existsSync } from 'fs';
 
 const ROOT = process.cwd();
 const STORYBG = path.join(ROOT, 'public', 'storybg');
@@ -21,8 +20,6 @@ async function* walkFiles(dir) {
 async function optimizeFile(inputPath) {
   const rel = path.relative(STORYBG, inputPath);
   const outputPath = path.join(OUTPUT_BASE, rel);
-
-  if (existsSync(outputPath)) return; // skip already done
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
 

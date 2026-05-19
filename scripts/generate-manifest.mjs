@@ -20,7 +20,6 @@ function scanFolder(folderPath) {
       .filter((f) => {
         if (!f.isFile()) return false;
         if (!IMAGE_EXTS.has(extname(f.name).toLowerCase())) return false;
-        if (f.name.includes("_zone")) return false;
         return true;
       })
       .map((f) => f.name)

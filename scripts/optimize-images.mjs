@@ -23,8 +23,12 @@ async function optimizeFile(inputPath) {
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
 
+  const meta = await sharp(inputPath).metadata();
+  const scale = 800 / 1920; // fixed ratio matching full-size storybg width
+  const targetW = Math.max(1, Math.round((meta.width ?? 1920) * scale));
+  const targetH = Math.max(1, Math.round((meta.height ?? 1080) * scale));
   await sharp(inputPath)
-    .resize({ width: 800, withoutEnlargement: true })
+    .resize({ width: targetW, height: targetH, fit: 'fill' })
     .webp({ quality: 75 })
     .toFile(outputPath);
 

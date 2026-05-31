@@ -21,7 +21,7 @@ async function main() {
     const outputPath = path.join(OUTPUT, name);
     try {
       const meta = await sharp(inputPath).metadata();
-      const maxW = 600;
+      const maxW = 800;
       const w = Math.min(meta.width ?? maxW, maxW);
       await sharp(inputPath)
         .resize({ width: w })

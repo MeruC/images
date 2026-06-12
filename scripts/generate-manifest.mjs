@@ -7,6 +7,30 @@ const root = join(__dirname, "..", "public", "storybg");
 
 const IMAGE_EXTS = new Set([".webp", ".jpg", ".jpeg", ".png"]);
 
+const VERSION_PREFIX_RE = /^(\d+_\d+|s\d+)_/;
+
+function scanItemFolder(folderPath) {
+  const files = readdirSync(folderPath, { withFileTypes: true })
+    .filter((f) => f.isFile() && IMAGE_EXTS.has(extname(f.name).toLowerCase()))
+    .map((f) => f.name)
+    .sort();
+
+  const groups = {};
+  for (const name of files) {
+    const m = name.match(VERSION_PREFIX_RE);
+    const key = m ? m[1] : "others";
+    (groups[key] ??= []).push(name);
+  }
+
+  // Put "others" first, then versions sorted numerically/lexically
+  const ordered = {};
+  if (groups.others) ordered.others = groups.others;
+  for (const key of Object.keys(groups).filter((k) => k !== "others").sort()) {
+    ordered[key] = groups[key];
+  }
+  return ordered;
+}
+
 function scanFolder(folderPath) {
   const result = {};
   const entries = readdirSync(folderPath, { withFileTypes: true });
@@ -36,6 +60,11 @@ function scanFolder(folderPath) {
 const manifest = {
   story_atcg: scanFolder(join(root, "story_atcg")),
   story_bg: scanFolder(join(root, "story_bg")),
+  story_item: (() => {
+    const p = join(root, "item");
+    try { readdirSync(p); } catch { return {}; }
+    return scanItemFolder(p);
+  })(),
 };
 
 const outPath = join(root, "manifest.json");

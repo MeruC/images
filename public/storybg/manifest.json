@@ -1246,6 +1246,25 @@
       "s01_cg_30_zone.webp",
       "s01_cg_31.webp",
       "s01_cg_32.webp"
+    ],
+    "s02": [
+      "s02_cg_01.webp",
+      "s02_cg_02_zone.webp",
+      "s02_cg_03_zone.webp",
+      "s02_cg_04_zone.webp",
+      "s02_cg_05_zone.webp",
+      "s02_cg_06_zone.webp",
+      "s02_cg_07_zone.webp",
+      "s02_cg_08.webp",
+      "s02_cg_09.webp",
+      "s02_cg_10.webp",
+      "s02_cg_11.webp",
+      "s02_cg_12.webp",
+      "s02_cg_13.webp",
+      "s02_cg_14.webp",
+      "s02_cg_15.webp",
+      "s02_cg_16.webp",
+      "s02_cg_17_zone.webp"
     ]
   },
   "story_bg": {
@@ -2215,6 +2234,29 @@
       "s01_bg_13.webp",
       "s01_bg_14.webp",
       "s01_bg_15.webp"
+    ],
+    "s02": [
+      "s02_bg_01.webp",
+      "s02_bg_02.webp",
+      "s02_bg_03.webp",
+      "s02_bg_04.webp",
+      "s02_bg_05.webp",
+      "s02_bg_06.webp",
+      "s02_bg_07.webp",
+      "s02_bg_08.webp",
+      "s02_bg_09.webp",
+      "s02_bg_10_zone.webp",
+      "s02_bg_11_zone.webp",
+      "s02_bg_12_zone.webp",
+      "s02_bg_13_zone.webp",
+      "s02_bg_14_zone.webp",
+      "s02_bg_15_zone.webp",
+      "s02_bg_16_zone.webp",
+      "s02_bg_17_zone.webp",
+      "s02_bg_18.webp",
+      "s02_bg_19.webp",
+      "s02_bg_20.webp",
+      "s02_bg_21.webp"
     ]
   },
   "story_item": {
@@ -2288,6 +2330,7 @@
       "shisihangshidexin.webp",
       "taihejinjiaonang.webp",
       "tongyongxinjian.webp",
+      "v.webp",
       "wenjianjia.webp",
       "xingti2cd.webp",
       "xuexiaoditu.webp",
@@ -3167,6 +3210,18 @@
       "s01_item_25.webp",
       "s01_item_26.webp",
       "s01_jinianpin.webp"
+    ],
+    "s02": [
+      "s02_item_01.webp",
+      "s02_item_02.webp",
+      "s02_item_03.webp",
+      "s02_item_04.webp",
+      "s02_item_05.webp",
+      "s02_item_06.webp",
+      "s02_item_07.webp",
+      "s02_item_08.webp",
+      "s02_item_09.webp",
+      "s02_item_10.webp"
     ]
   }
 }

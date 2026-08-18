@@ -7,7 +7,14 @@ const STORYBG = path.join(ROOT, 'public', 'storybg');
 const OUTPUT_BASE = path.join(STORYBG, 'smallbg');
 const IMAGE_EXTS = new Set(['.webp', '.jpg', '.jpeg', '.png']);
 
-const SOURCE_FOLDERS = ['story_atcg', 'story_bg'];
+// Maps each source folder to the smallbg output folder name it writes to.
+// story_bg writes to "story_bgs" (not "story_bg") because smallbg/story_bg
+// already contains unrelated images used elsewhere on the site and must not
+// be touched by this script.
+const SOURCE_FOLDERS = [
+  { source: 'story_atcg', output: 'story_atcg' },
+  { source: 'story_bg', output: 'story_bgs' },
+];
 
 async function* walkFiles(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
@@ -17,9 +24,15 @@ async function* walkFiles(dir) {
   }
 }
 
-async function optimizeFile(inputPath) {
-  const rel = path.relative(STORYBG, inputPath);
-  const outputPath = path.join(OUTPUT_BASE, rel);
+async function optimizeFile(inputPath, sourceDir, outputName) {
+  const rel = path.relative(sourceDir, inputPath);
+  const outputPath = path.join(OUTPUT_BASE, outputName, rel);
+
+  try {
+    await fs.access(outputPath);
+    console.log(`  ${rel} — skipped (already exists)`);
+    return;
+  } catch {}
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
 
@@ -38,14 +51,18 @@ async function optimizeFile(inputPath) {
 }
 
 async function main() {
-  const folders = SOURCE_FOLDERS.map(f => path.join(STORYBG, f));
+  // story_bgs is fully regenerated each run, so clear it out first to drop
+  // any stale leftovers that no longer correspond to a source file.
+  const story_bgsOutput = path.join(OUTPUT_BASE, 'story_bgs');
+  await fs.rm(story_bgsOutput, { recursive: true, force: true });
 
   let total = 0, errors = 0;
-  for (const folder of folders) {
-    console.log(`\nProcessing: ${path.relative(ROOT, folder)}`);
+  for (const { source, output } of SOURCE_FOLDERS) {
+    const folder = path.join(STORYBG, source);
+    console.log(`\nProcessing: ${path.relative(ROOT, folder)} -> smallbg/${output}`);
     for await (const file of walkFiles(folder)) {
       try {
-        await optimizeFile(file);
+        await optimizeFile(file, folder, output);
         total++;
       } catch (err) {
         console.error(`  ERROR ${path.relative(STORYBG, file)}: ${err.message}`);

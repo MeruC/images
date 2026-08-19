@@ -7,7 +7,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deployB": "bun run build && bunx wrangler pages deploy dist --project-name images --branch deploy",
+    "deploy": "bunx wrangler pages deploy dist --project-name images --branch deploy"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

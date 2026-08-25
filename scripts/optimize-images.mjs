@@ -29,9 +29,11 @@ async function optimizeFile(inputPath, sourceDir, outputName) {
   const outputPath = path.join(OUTPUT_BASE, outputName, rel);
 
   try {
-    await fs.access(outputPath);
-    console.log(`  ${rel} — skipped (already exists)`);
-    return;
+    const [inStat, outStat] = await Promise.all([fs.stat(inputPath), fs.stat(outputPath)]);
+    if (outStat.mtimeMs >= inStat.mtimeMs) {
+      console.log(`  ${rel} — skipped (up to date)`);
+      return;
+    }
   } catch {}
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
@@ -51,11 +53,6 @@ async function optimizeFile(inputPath, sourceDir, outputName) {
 }
 
 async function main() {
-  // story_bgs is fully regenerated each run, so clear it out first to drop
-  // any stale leftovers that no longer correspond to a source file.
-  const story_bgsOutput = path.join(OUTPUT_BASE, 'story_bgs');
-  await fs.rm(story_bgsOutput, { recursive: true, force: true });
-
   let total = 0, errors = 0;
   for (const { source, output } of SOURCE_FOLDERS) {
     const folder = path.join(STORYBG, source);

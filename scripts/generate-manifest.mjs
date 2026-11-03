@@ -3,7 +3,7 @@ import { join, extname, relative, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = join(__dirname, "..", "public", "storybg");
+const root = process.env.STORYBG_DIR || join(__dirname, "..", "public", "storybg");
 
 const IMAGE_EXTS = new Set([".webp", ".jpg", ".jpeg", ".png"]);
 
